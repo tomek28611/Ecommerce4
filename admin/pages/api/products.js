@@ -1,6 +1,5 @@
-import clientPromise from "@/lib/mongodb";
-import mongoose from "mongoose";
-import {Product} from "@/models/Product";
+
+import { Product } from "@/models/Product";
 import { mongooseConnect } from "@/lib/mongoose";
 
 export default async function handle(req, res) {
@@ -8,7 +7,11 @@ export default async function handle(req, res) {
     await mongooseConnect();
 
     if (method === 'GET') {
-      res.json(await Product.find());
+        if (req.query?.id) {
+            res.json(await Product.findOne({ _id:req.query.id }))
+        } else {
+            res.json(await Product.find());
+        }
     }
 
     if (method === 'POST') {
@@ -17,5 +20,11 @@ export default async function handle(req, res) {
             title, description, price
         })
         res.json(productDoc);
+    }
+
+    if (method === 'PUT') {
+        const { _id, title, description, price } = req.body;
+        await Product.updateOne({ _id }, {title, description, price});
+        res.json(true);
     }
 }
