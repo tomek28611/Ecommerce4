@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 
 export default function Nav() {
     const inactiveLink = 'flex gap-1 p-1';
-    const activeLink = inactiveLink+' bg-white text-blue-900 rounded-l-lg';
+    const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-l-lg';
     const router = useRouter();
-    const {pathname} = router;
+    const { pathname } = router;
 
     return (
         <aside className="text-white p-4 pr-0">
@@ -31,6 +31,15 @@ export default function Nav() {
                     </svg>
 
                     Products
+                </Link>
+
+                <Link href={'/categories'} className={pathname.includes('/categories') ? activeLink : inactiveLink}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                    </svg>
+
+
+                    Categories
                 </Link>
 
                 <Link href={'/orders'} className={pathname.includes('/orders') ? activeLink : inactiveLink}>
