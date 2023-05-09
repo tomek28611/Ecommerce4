@@ -98,6 +98,10 @@ export default function ProductForm({
         }
     }
 
+    function demo() {
+        alert("demo");
+    }
+
     return (
 
         <form onSubmit={saveProduct}>
