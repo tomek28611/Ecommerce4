@@ -118,17 +118,17 @@ export default function ProductForm({
                 onChange={ev => setCategory(ev.target.value)}>
                 <option value="">Uncategorized</option>
                 {categories.length > 0 && categories.map(c => (
-                    <option value={c._id}>{c.name}</option>
+                    <option key={_id} value={c._id}>{c.name}</option>
                 ))}
             </select>
             {propertiesToFill.length > 0 && propertiesToFill.map(p => (
-                <div className="flex gap-1">
+                <div key={_id} className="flex gap-1">
                     <div>{p.name}</div>
                     <select
                         value={productProperties[p.name]}
                         onChange={ev => setProductProp(p.name, ev.target.value)}>
                         {p.values.map(v => (
-                            <option value={v}>{v}</option>
+                            <option key={_id} value={v}>{v}</option>
                         ))}
                     </select>
                 </div>

@@ -26,6 +26,7 @@ function Categories({ swal }) {
             name, 
             parentCategory, 
             properties: properties.map(p => ({
+                key: _id,
                 name: p.name,
                 values: p.values.split(','),
             })),
@@ -49,6 +50,7 @@ function Categories({ swal }) {
         setParentCategory(category.parent?._id);
         setProperties(
             category.properties.map(({name, values}) => ({
+            key: _id,    
             name,
             values: values.join(','),
         })));
@@ -125,7 +127,7 @@ function Categories({ swal }) {
                         value={parentCategory}>
                         <option value="">No parent category</option>
                         {categories.length > 0 && categories.map(category => (
-                            <option value={category._id}>{category.name}</option>
+                            <option key={category._id} value={category._id}>{category.name}</option>
                         ))}
                     </select>
                 </div>
@@ -138,7 +140,7 @@ function Categories({ swal }) {
                         Add new property
                     </button>
                     {properties.length > 0 && properties.map((property, index) => (
-                        <div className="flex gap-1 mb-2">
+                        <div key={_id} className="flex gap-1 mb-2">
                             <input type="text" value={property.name}
                                 className="mb-0"
                                 onChange={ev => handlePropertyNameChange(index, property, ev.target.value)}
@@ -184,7 +186,7 @@ function Categories({ swal }) {
                     </thead>
                     <tbody>
                         {categories.length > 0 && categories.map(category => (
-                            <tr>
+                            <tr key={category._id}>
                                 <td>{category.name}</td>
                                 <td>{category?.parent?.name}</td>
                                 <td>
